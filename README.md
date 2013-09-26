@@ -27,3 +27,21 @@ Supports these extender options as methods of telling it which properties are un
 * an object, whose current property names will be used
 
 Note: ignores properties which already exist on functions (`["length", "name", "arguments", "caller", "prototype"]`).
+
+
+Templating
+----------
+#### ko.svgTemplateEngine
+Allows named templates to be used for SVG elements. Due to use of `innerHtml`, the native template engine
+currently doesn't support this.
+
+```html
+<script type="text/html" id="blueBoxTemplate">
+  <rect fill="blue" width="50" height="50" />
+</script>
+
+<svg ...>
+    <!-- ko template: { name: 'blueBoxTemplate', templateEngine: ko.svgTemplateEngine.instance } -->
+    <!-- /ko -->
+</svg>
+```
