@@ -32,7 +32,7 @@ Note: ignores properties which already exist on functions (`["length", "name", "
 Templating
 ----------
 #### ko.svgTemplateEngine
-Allows named templates to be used for SVG elements. Due to use of `innerHtml`, the native template engine
+Allows named templates to be used for SVG elements. Due to use of `innerHTML`, the native template engine
 currently doesn't support this.
 
 ```html
