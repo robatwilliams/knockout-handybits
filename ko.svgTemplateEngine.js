@@ -3,9 +3,6 @@
 // SVG parsing technique from https://github.com/GilesBradshaw/Knockout.js-Observable-Template-Engine/ by Giles Bradshaw
 // License: MIT (http://www.opensource.org/licenses/mit-license.php)
 
-/*jslint maxlen: 130, unparam: true */
-/*global define, document, DOMParser */
-
 define([
     'knockout'
 ], function (ko) {

@@ -2,8 +2,6 @@
 // (c) Robat Williams - github.com/robatwilliams
 // License: MIT (http://www.opensource.org/licenses/mit-license.php)
 
-/*global define */
-
 define([
     'knockout'
 ], function (ko) {
@@ -53,8 +51,8 @@ define([
 
             if (existingProperties.length > 0) {
                 if (window.console) {
-                    window.console.warn('ko.extenders.evaluationCheck:: cannot check following properties on the target '
-                        + 'observable, as it already has them defined: ' + existingProperties);
+                    window.console.warn('ko.extenders.evaluationCheck:: cannot check following properties on the target ' +
+                        'observable, as it already has them defined: ' + existingProperties);
                 }
             }
         }
