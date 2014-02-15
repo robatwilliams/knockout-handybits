@@ -41,7 +41,55 @@ currently doesn't support this.
 </script>
 
 <svg ...>
-    <!-- ko template: { name: 'blueBoxTemplate', templateEngine: ko.svgTemplateEngine.instance } -->
-    <!-- /ko -->
+  <!-- ko template: { name: 'blueBoxTemplate', templateEngine: ko.svgTemplateEngine.instance } -->
+  <!-- /ko -->
 </svg>
 ```
+
+#### templateMapper
+Maps named Knockout templates to unique DOM element IDs, to avoid conflicts between template IDs in large applications.
+
+
+Create your templates in a file as usual, but using the attribute `data-templatename` instead of `id`:
+```html
+<script data-templatename="add" type="text/html">
+  <div>
+    <input data-bind="value: todoText" />
+    <button data-bind="click: addTodo">Add</button>
+  </div>
+</script>
+
+<script data-templatename="edit" type="text/html">
+  <div>
+    <input data-bind="value: todoText" />
+    <button data-bind="click: save">Save</button>
+  </div>
+</script>
+```
+
+Map the templates once, and expose them on your view models:
+```javascript
+define([
+	'templateMapper',
+    'text!views/templates.htm'
+], function (templateMapper, templatesText) {
+	var ViewModel, mappedTemplates;
+    
+    mappedTemplates = templateMapper.map(templatesText);
+    
+    ViewModel = function ViewModel() {
+    	this.mappedTemplates = mappedTemplates;
+    };
+    
+    return ViewModel;
+});
+```
+
+The `map` method returns a plain object which maps the `data-templatename` values from your templates to a generated `id` which was set on the template script tags when they were added to the document by the templateMapper.
+
+Use the mapped `id`s via their mapped names in your views:
+```html
+<!-- ko template: mappedTemplates.add --><!-- /ko -->
+```
+
+Note: the `map` method can also take in an array of template strings - the templates from each one will be mapped onto the single returned object.
